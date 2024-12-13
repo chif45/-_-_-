@@ -97,11 +97,8 @@ namespace wcf_chat
         {
             var users = LoadUsersFromFile("Users.json");
 
-            string password = data.Password;
-            string name = data.Name;
-            string login = data.Login;
 
-            if (password != confirmPassword)
+            if (data.Password != confirmPassword)
             {
                 throw new WrongPassword("Пароли не совпадают. Пожалуйста, попробуйте снова.");
                 
@@ -109,21 +106,14 @@ namespace wcf_chat
 
             foreach (var user in users)
             {
-                if (user.Login == login)
+                if (user.Login == data.Login)
                 {
                     throw new AlreadyExsist("Пользователь с таким логином уже существует.");
 
                 }
             }
 
-            // Заносим данные в JSON формат
-            var userData = new UserDataJS
-            {
-                Name = name,
-                Login = login,
-                Password = password
-            };
-            users.Add(userData);
+            users.Add(data);
             string json = JsonConvert.SerializeObject(users, Newtonsoft.Json.Formatting.Indented);
 
             // Запись в файл

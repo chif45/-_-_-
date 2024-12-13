@@ -14,8 +14,9 @@
         </Grid.ColumnDefinitions>
         <TextBlock x:Name="tbUserName" HorizontalAlignment="Left" Height="29" Margin="62,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="335" Grid.ColumnSpan="2" Grid.Column="1"/>
         <Button x:Name="bConnDicon" Click="Disconnect_Click" Content="Disconnect" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="147" Height="29" Grid.ColumnSpan="2"/>
-        <ListBox x:Name="lbChat" HorizontalAlignment="Left" Height="181" Margin="10,44,0,0" VerticalAlignment="Top" Width="497" Grid.ColumnSpan="3"/>
-        <TextBox x:Name="tbMessage" HorizontalAlignment="Left" Height="79" Margin="10,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="497" KeyDown="tbMessage_KeyDown" Grid.ColumnSpan="3"/>
+        <ListBox x:Name="lbChat" HorizontalAlignment="Left" Height="167" Margin="126,58,0,0" VerticalAlignment="Top" Width="271" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <TextBox x:Name="tbMessage" HorizontalAlignment="Left" Height="79" Margin="126,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="271" KeyDown="tbMessage_KeyDown" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <ListBox Grid.ColumnSpan="2" Height="251" Margin="10,58,205,0" VerticalAlignment="Top" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ListBox_SelectionChanged"/>
 
     </Grid>
 </Window>

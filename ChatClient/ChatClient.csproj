@@ -109,8 +109,12 @@
     <None Include="Connected Services\ServiceChat\item1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ServiceChat\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ServiceChat\ServiceChat.wsdl" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\wcf_chat.UserDataJS.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -139,6 +143,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\wcf_chat\wcf_chat.csproj">
+      <Project>{6CEFEB18-3B2F-4270-8151-D9CFB0CFF816}</Project>
+      <Name>wcf_chat</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -32,6 +32,18 @@ namespace ChatClient.ServiceChat {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceChat/SendMsg")]
         System.Threading.Tasks.Task SendMsgAsync(string msg, int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Authorization", ReplyAction="http://tempuri.org/IServiceChat/AuthorizationResponse")]
+        wcf_chat.UserDataJS Authorization(string login, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Authorization", ReplyAction="http://tempuri.org/IServiceChat/AuthorizationResponse")]
+        System.Threading.Tasks.Task<wcf_chat.UserDataJS> AuthorizationAsync(string login, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Registration", ReplyAction="http://tempuri.org/IServiceChat/RegistrationResponse")]
+        bool Registration(wcf_chat.UserDataJS data, string confirmPassword);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Registration", ReplyAction="http://tempuri.org/IServiceChat/RegistrationResponse")]
+        System.Threading.Tasks.Task<bool> RegistrationAsync(wcf_chat.UserDataJS data, string confirmPassword);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -91,6 +103,22 @@ namespace ChatClient.ServiceChat {
         
         public System.Threading.Tasks.Task SendMsgAsync(string msg, int id) {
             return base.Channel.SendMsgAsync(msg, id);
+        }
+        
+        public wcf_chat.UserDataJS Authorization(string login, string password) {
+            return base.Channel.Authorization(login, password);
+        }
+        
+        public System.Threading.Tasks.Task<wcf_chat.UserDataJS> AuthorizationAsync(string login, string password) {
+            return base.Channel.AuthorizationAsync(login, password);
+        }
+        
+        public bool Registration(wcf_chat.UserDataJS data, string confirmPassword) {
+            return base.Channel.Registration(data, confirmPassword);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RegistrationAsync(wcf_chat.UserDataJS data, string confirmPassword) {
+            return base.Channel.RegistrationAsync(data, confirmPassword);
         }
     }
 }

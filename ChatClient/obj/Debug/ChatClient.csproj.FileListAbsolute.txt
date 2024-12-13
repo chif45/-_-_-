@@ -33,3 +33,6 @@ A:\курсовая ОС\wcf_chat\ChatClient\bin\Debug\Newtonsoft.Json.dll
 A:\курсовая ОС\wcf_chat\ChatClient\bin\Debug\Newtonsoft.Json.xml
 A:\курсовая ОС\wcf_chat\ChatClient\obj\Debug\RegAuthWindow.baml
 A:\курсовая ОС\wcf_chat\ChatClient\obj\Debug\ChatClient.csproj.Up2Date
+A:\курсовая ОС\wcf_chat\ChatClient\bin\Debug\wcf_chat.dll
+A:\курсовая ОС\wcf_chat\ChatClient\bin\Debug\wcf_chat.pdb
+A:\курсовая ОС\wcf_chat\ChatClient\bin\Debug\wcf_chat.dll.config
