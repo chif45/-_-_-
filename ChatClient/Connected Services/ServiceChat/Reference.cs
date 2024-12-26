@@ -21,17 +21,17 @@ namespace ChatClient.ServiceChat {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Connect", ReplyAction="http://tempuri.org/IServiceChat/ConnectResponse")]
         System.Threading.Tasks.Task<int> ConnectAsync(string name);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Disconnect", ReplyAction="http://tempuri.org/IServiceChat/DisconnectResponse")]
-        void Disconnect(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/DisconnectAsync", ReplyAction="http://tempuri.org/IServiceChat/DisconnectAsyncResponse")]
+        void DisconnectAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Disconnect", ReplyAction="http://tempuri.org/IServiceChat/DisconnectResponse")]
-        System.Threading.Tasks.Task DisconnectAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceChat/SendMsg")]
-        void SendMsg(string msg, int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/DisconnectAsync", ReplyAction="http://tempuri.org/IServiceChat/DisconnectAsyncResponse")]
+        System.Threading.Tasks.Task DisconnectAsyncAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceChat/SendMsg")]
-        System.Threading.Tasks.Task SendMsgAsync(string msg, int id);
+        void SendMsg(string msg, int id_me, int id_for);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceChat/SendMsg")]
+        System.Threading.Tasks.Task SendMsgAsync(string msg, int id_me, int id_for);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Authorization", ReplyAction="http://tempuri.org/IServiceChat/AuthorizationResponse")]
         wcf_chat.UserDataJS Authorization(string login, string password);
@@ -44,6 +44,30 @@ namespace ChatClient.ServiceChat {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Registration", ReplyAction="http://tempuri.org/IServiceChat/RegistrationResponse")]
         System.Threading.Tasks.Task<bool> RegistrationAsync(wcf_chat.UserDataJS data, string confirmPassword);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceChat/UpdateOnlineUser")]
+        void UpdateOnlineUser(string NewUser, bool status, int currentUserId);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceChat/UpdateOnlineUser")]
+        System.Threading.Tasks.Task UpdateOnlineUserAsync(string NewUser, bool status, int currentUserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/ReturnOnlineUsers", ReplyAction="http://tempuri.org/IServiceChat/ReturnOnlineUsersResponse")]
+        void ReturnOnlineUsers(int ID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/ReturnOnlineUsers", ReplyAction="http://tempuri.org/IServiceChat/ReturnOnlineUsersResponse")]
+        System.Threading.Tasks.Task ReturnOnlineUsersAsync(int ID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/UploadFile", ReplyAction="http://tempuri.org/IServiceChat/UploadFileResponse")]
+        void UploadFile(byte[] fileData, string fileName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/UploadFile", ReplyAction="http://tempuri.org/IServiceChat/UploadFileResponse")]
+        System.Threading.Tasks.Task UploadFileAsync(byte[] fileData, string fileName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/DownloadFile", ReplyAction="http://tempuri.org/IServiceChat/DownloadFileResponse")]
+        byte[] DownloadFile(string fileName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/DownloadFile", ReplyAction="http://tempuri.org/IServiceChat/DownloadFileResponse")]
+        System.Threading.Tasks.Task<byte[]> DownloadFileAsync(string fileName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -51,6 +75,12 @@ namespace ChatClient.ServiceChat {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceChat/MsgCallback")]
         void MsgCallback(string msg);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceChat/UpdateOnlineUserCallback")]
+        void UpdateOnlineUserCallback(string UserName, bool status, int ID);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceChat/ReturnOnlineUsersCallback")]
+        void ReturnOnlineUsersCallback(System.Collections.Generic.Dictionary<int, string> OnlineUsers);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -89,20 +119,20 @@ namespace ChatClient.ServiceChat {
             return base.Channel.ConnectAsync(name);
         }
         
-        public void Disconnect(int id) {
-            base.Channel.Disconnect(id);
+        public void DisconnectAsync(int id) {
+            base.Channel.DisconnectAsync(id);
         }
         
-        public System.Threading.Tasks.Task DisconnectAsync(int id) {
-            return base.Channel.DisconnectAsync(id);
+        public System.Threading.Tasks.Task DisconnectAsyncAsync(int id) {
+            return base.Channel.DisconnectAsyncAsync(id);
         }
         
-        public void SendMsg(string msg, int id) {
-            base.Channel.SendMsg(msg, id);
+        public void SendMsg(string msg, int id_me, int id_for) {
+            base.Channel.SendMsg(msg, id_me, id_for);
         }
         
-        public System.Threading.Tasks.Task SendMsgAsync(string msg, int id) {
-            return base.Channel.SendMsgAsync(msg, id);
+        public System.Threading.Tasks.Task SendMsgAsync(string msg, int id_me, int id_for) {
+            return base.Channel.SendMsgAsync(msg, id_me, id_for);
         }
         
         public wcf_chat.UserDataJS Authorization(string login, string password) {
@@ -119,6 +149,38 @@ namespace ChatClient.ServiceChat {
         
         public System.Threading.Tasks.Task<bool> RegistrationAsync(wcf_chat.UserDataJS data, string confirmPassword) {
             return base.Channel.RegistrationAsync(data, confirmPassword);
+        }
+        
+        public void UpdateOnlineUser(string NewUser, bool status, int currentUserId) {
+            base.Channel.UpdateOnlineUser(NewUser, status, currentUserId);
+        }
+        
+        public System.Threading.Tasks.Task UpdateOnlineUserAsync(string NewUser, bool status, int currentUserId) {
+            return base.Channel.UpdateOnlineUserAsync(NewUser, status, currentUserId);
+        }
+        
+        public void ReturnOnlineUsers(int ID) {
+            base.Channel.ReturnOnlineUsers(ID);
+        }
+        
+        public System.Threading.Tasks.Task ReturnOnlineUsersAsync(int ID) {
+            return base.Channel.ReturnOnlineUsersAsync(ID);
+        }
+        
+        public void UploadFile(byte[] fileData, string fileName) {
+            base.Channel.UploadFile(fileData, fileName);
+        }
+        
+        public System.Threading.Tasks.Task UploadFileAsync(byte[] fileData, string fileName) {
+            return base.Channel.UploadFileAsync(fileData, fileName);
+        }
+        
+        public byte[] DownloadFile(string fileName) {
+            return base.Channel.DownloadFile(fileName);
+        }
+        
+        public System.Threading.Tasks.Task<byte[]> DownloadFileAsync(string fileName) {
+            return base.Channel.DownloadFileAsync(fileName);
         }
     }
 }

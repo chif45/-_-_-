@@ -5,19 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatClient"
         mc:Ignorable="d"
-        Title="Чат" Height="350" Width="525" Loaded="Window_Loaded" Closing="Window_Closing">
-    <Grid>
+        Title="Чат" Height="370" Width="525" Loaded="Window_Loaded" Closing="Window_Closing">
+    <Grid Background="#3d4540">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="110*"/>
-            <ColumnDefinition Width="252*"/>
-            <ColumnDefinition Width="163*"/>
+            <ColumnDefinition Width="103*"/>
+            <ColumnDefinition Width="257*"/>
+            <ColumnDefinition Width="165*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="tbUserName" HorizontalAlignment="Left" Height="29" Margin="62,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="335" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <Button x:Name="bConnDicon" Click="Disconnect_Click" Content="Disconnect" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="147" Height="29" Grid.ColumnSpan="2"/>
-        <ListBox x:Name="lbChat" HorizontalAlignment="Left" Height="167" Margin="126,58,0,0" VerticalAlignment="Top" Width="271" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <TextBox x:Name="tbMessage" HorizontalAlignment="Left" Height="79" Margin="126,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="271" KeyDown="tbMessage_KeyDown" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <ListBox Grid.ColumnSpan="2" Height="251" Margin="10,58,205,0" VerticalAlignment="Top" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ListBox_SelectionChanged"/>
-
+        <TextBlock x:Name="tbUserName" Foreground="White"  HorizontalAlignment="Left" Height="14" Margin="239,9,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="158" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <Button x:Name="bConnDicon" Foreground="White"  Background="#7e4345" Click="Disconnect_Click" Content="Disconnect" HorizontalAlignment="Left" Margin="138,10,0,0" VerticalAlignment="Top" Width="82" Height="29" Grid.Column="1"/>
+        <ListBox x:Name="lbChat"  Background="#bfd2c6" HorizontalAlignment="Right" Height="170" Margin="0,55,25,0" VerticalAlignment="Top" Width="271" Grid.ColumnSpan="2" Grid.Column="1" SelectionChanged="lbChat_SelectionChanged"/>
+        <TextBox x:Name="tbMessage"  Background="#bfd2c6" HorizontalAlignment="Right" Height="79" Margin="0,230,72,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="224" KeyDown="tbMessage_KeyDown" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <ListBox x:Name="lbOnlineUsers" SelectionChanged="lbOnlineUsers_SelectionChanged" Background="#bfd2c6" Grid.ColumnSpan="2" Margin="10,55,0,0" HorizontalAlignment="Left" Width="147" Height="254" VerticalAlignment="Top"  />
+        <Label Content="Пользователи в сети:" Foreground="White" HorizontalAlignment="Left" Margin="6,31,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="24" Width="155"/>
+        <Button Content="Общий Чат" Background="#3c7b84" Click="bOpenGlobalChat_Click" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Height="22" Width="147" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="WhatIsTheChat" Foreground="White"  HorizontalAlignment="Left" Height="14" Margin="239,24,0,0" TextWrapping="Wrap" Text="Общий чат" VerticalAlignment="Top" Width="158" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <Button Grid.Column="2" Background="#3c7b84" Content="File" HorizontalAlignment="Right" Margin="0,230,25,0" Click="UploadFileButton_Click" Width="42" Height="32" VerticalAlignment="Top"/>
+        <Button Grid.Column="2" Background="#3c7b84" Content="Send" HorizontalAlignment="Right" Margin="0,277,25,0" Click="SendMsg_Click" Width="42" Height="32" VerticalAlignment="Top"/>
     </Grid>
 </Window>
 

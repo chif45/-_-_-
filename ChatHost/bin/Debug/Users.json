@@ -3,5 +3,25 @@
     "Name": "sanya",
     "Login": "chif",
     "Password": "qwerty"
+  },
+  {
+    "Name": "Светалана",
+    "Login": "qwerty",
+    "Password": "qwerty"
+  },
+  {
+    "Name": "Светлана",
+    "Login": "new",
+    "Password": "qwerty"
+  },
+  {
+    "Name": "Михаил",
+    "Login": "mihan",
+    "Password": "123"
+  },
+  {
+    "Name": "Александр",
+    "Login": "alex",
+    "Password": "123"
   }
 ]

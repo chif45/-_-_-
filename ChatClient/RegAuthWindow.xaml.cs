@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using ChatClient.ServiceChat;
 using wcf_chat;
 using System.ServiceModel;
+using System.Collections.Generic;
 
 namespace ChatClient
 {
@@ -23,11 +24,11 @@ namespace ChatClient
             {
                 ServiceChatClient client = new ServiceChatClient(new InstanceContext(this));
                 foundUser = client.Authorization(login, password);
-                MainWindow mainWindow = new MainWindow(foundUser.Name);
+                MainWindow mainWindow = new MainWindow(foundUser.Name, foundUser.Login);
                 mainWindow.Show();
                 this.Close();
             }
-            catch (Exception ex) // Обработка всех остальных исключений
+            catch (Exception ex) 
             {
                 MessageBox.Show("Произошла ошибка: " + ex.Message);
             }
@@ -75,7 +76,39 @@ namespace ChatClient
         {
             MessageBox.Show(msg);
         }
+        public void UpdateOnlineUserCallback(string NewUserName, bool status)
+        {
 
+        }
+        public void ReturnOnlineUsersCallback(Dictionary<int, string> OnlineUsers)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReturnOnlineUsersCallback(string[] OnlineUsers)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UploadFile(byte[] fileData, string fileName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public byte[] DownloadFile(string fileName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateOnlineUserCallback(string UserName, bool status, int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReturnOnlineUsersCallback(List<string> OnlineUsers, int ID)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

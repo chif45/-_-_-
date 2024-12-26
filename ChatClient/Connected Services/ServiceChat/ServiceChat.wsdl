@@ -34,6 +34,7 @@
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/wcf_chat" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IServiceChat_Connect_InputMessage">
@@ -42,11 +43,11 @@
   <wsdl:message name="IServiceChat_Connect_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConnectResponse" />
   </wsdl:message>
-  <wsdl:message name="IServiceChat_Disconnect_InputMessage">
-    <wsdl:part name="parameters" element="tns:Disconnect" />
+  <wsdl:message name="IServiceChat_DisconnectAsync_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectAsync" />
   </wsdl:message>
-  <wsdl:message name="IServiceChat_Disconnect_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DisconnectResponse" />
+  <wsdl:message name="IServiceChat_DisconnectAsync_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectAsyncResponse" />
   </wsdl:message>
   <wsdl:message name="IServiceChat_SendMsg_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMsg" />
@@ -63,17 +64,44 @@
   <wsdl:message name="IServiceChat_Registration_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegistrationResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceChat_UpdateOnlineUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOnlineUser" />
+  </wsdl:message>
+  <wsdl:message name="IServiceChat_ReturnOnlineUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnOnlineUsers" />
+  </wsdl:message>
+  <wsdl:message name="IServiceChat_ReturnOnlineUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnOnlineUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceChat_UploadFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadFile" />
+  </wsdl:message>
+  <wsdl:message name="IServiceChat_UploadFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceChat_DownloadFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadFile" />
+  </wsdl:message>
+  <wsdl:message name="IServiceChat_DownloadFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadFileResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceChat_MsgCallback_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MsgCallback" />
+  </wsdl:message>
+  <wsdl:message name="IServiceChat_UpdateOnlineUserCallback_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOnlineUserCallback" />
+  </wsdl:message>
+  <wsdl:message name="IServiceChat_ReturnOnlineUsersCallback_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReturnOnlineUsersCallback" />
   </wsdl:message>
   <wsdl:portType name="IServiceChat">
     <wsdl:operation name="Connect">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceChat/Connect" message="tns:IServiceChat_Connect_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceChat/ConnectResponse" message="tns:IServiceChat_Connect_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Disconnect">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceChat/Disconnect" message="tns:IServiceChat_Disconnect_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceChat/DisconnectResponse" message="tns:IServiceChat_Disconnect_OutputMessage" />
+    <wsdl:operation name="DisconnectAsync">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceChat/DisconnectAsync" message="tns:IServiceChat_DisconnectAsync_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceChat/DisconnectAsyncResponse" message="tns:IServiceChat_DisconnectAsync_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SendMsg">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceChat/SendMsg" message="tns:IServiceChat_SendMsg_InputMessage" />
@@ -86,8 +114,29 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceChat/Registration" message="tns:IServiceChat_Registration_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceChat/RegistrationResponse" message="tns:IServiceChat_Registration_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="UpdateOnlineUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceChat/UpdateOnlineUser" message="tns:IServiceChat_UpdateOnlineUser_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnOnlineUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceChat/ReturnOnlineUsers" message="tns:IServiceChat_ReturnOnlineUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceChat/ReturnOnlineUsersResponse" message="tns:IServiceChat_ReturnOnlineUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceChat/UploadFile" message="tns:IServiceChat_UploadFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceChat/UploadFileResponse" message="tns:IServiceChat_UploadFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceChat/DownloadFile" message="tns:IServiceChat_DownloadFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceChat/DownloadFileResponse" message="tns:IServiceChat_DownloadFile_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="MsgCallback">
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceChat/MsgCallback" message="tns:IServiceChat_MsgCallback_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOnlineUserCallback">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceChat/UpdateOnlineUserCallback" message="tns:IServiceChat_UpdateOnlineUserCallback_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnOnlineUsersCallback">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceChat/ReturnOnlineUsersCallback" message="tns:IServiceChat_ReturnOnlineUsersCallback_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IServiceChat" type="tns:IServiceChat">
@@ -102,8 +151,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Disconnect">
-      <soap12:operation soapAction="http://tempuri.org/IServiceChat/Disconnect" style="document" />
+    <wsdl:operation name="DisconnectAsync">
+      <soap12:operation soapAction="http://tempuri.org/IServiceChat/DisconnectAsync" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -135,8 +184,53 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UpdateOnlineUser">
+      <soap12:operation soapAction="http://tempuri.org/IServiceChat/UpdateOnlineUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnOnlineUsers">
+      <soap12:operation soapAction="http://tempuri.org/IServiceChat/ReturnOnlineUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <soap12:operation soapAction="http://tempuri.org/IServiceChat/UploadFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFile">
+      <soap12:operation soapAction="http://tempuri.org/IServiceChat/DownloadFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="MsgCallback">
       <soap12:operation soapAction="http://tempuri.org/IServiceChat/MsgCallback" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOnlineUserCallback">
+      <soap12:operation soapAction="http://tempuri.org/IServiceChat/UpdateOnlineUserCallback" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnOnlineUsersCallback">
+      <soap12:operation soapAction="http://tempuri.org/IServiceChat/ReturnOnlineUsersCallback" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

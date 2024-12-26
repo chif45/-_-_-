@@ -112,6 +112,9 @@
     <None Include="Connected Services\ServiceChat\item2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ServiceChat\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ServiceChat\ServiceChat.wsdl" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\wcf_chat.UserDataJS.datasource" />
